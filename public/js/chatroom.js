@@ -27,7 +27,7 @@
     socket.on('receive_message', data => {
         console.log(data)
         let listItem = document.createElement('li')
-        listItem.textContent = data.username + ": " + data.message;
+        listItem.textContent = data.username + " : " + data.message;
         listItem.classList.add('list-group-item');
         messageList.appendChild(listItem) 
     })
