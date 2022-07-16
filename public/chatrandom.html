@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23Chat</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+    <div id="bodyDiv">
+      <br><br><br>
+      <div class="row">
+        <div class="col-xs-6 col-sm-12">
+          <h1 class="text-center no-margin">IITD Omegle Beta </h1>
+        </div>
+        <div class="top-right col-xs-6 col-sm-12">
+          <h3 class="text-center no-margin">Chat with someone random</h3>
+          <h2 class="text-center no-margin">powered by <a href="http://www.cse.iitd.ac.in/devclub/" target="_blank">DevClub</a></h2>
+           <h2 class="text-center no-margin"><a href="http://www.cse.iitd.ac.in/devclub/" target="_blank">See Other Cool Projects</a></h2>
+          <h3 class="text-center no-margin"><a href="https://docs.google.com/forms/d/1XzrNfLWO032XLv_SQw2elvzuFdtUl24or50Q8pTDLyg/viewform?edit_requested=true" target="_blank">Complaint/Bug/Suggestion</a> </h3>
+        </div>
+      </div>
+      <div id = "outerdiv">
+        <div id="partnerdiv" class="col-sm-2">
+          <span id="partnerinfo">
+            <div class="align-left">
+              <h3>You're talking to:</h3>
+              <br>
+              <h3 id="partnername"></h3>
+              <br>
+            </div>
+            <img id = "partnerimg" src="">
+          </span>
+        </div>
+        <div id="mydiv" class="col-sm-2">
+            <span id="myinfo">
+              <div class="align-left">
+                <h3>You are:</h3>
+                <br>
+                <h3 id="myname"></h3>
+                <br>
+              </div>
+              <img id = "myimg" src="">
+            </span>
+          </div>
+        <div id="messagediv">
+          <div id = "messages"></div>
+          <div id = "newMessage">
+            <form id='msgform' onsubmit="return submitForm()">
+              <input type="text" id="m" autocomplete="off" placeholder="Wait for partner to join"/>
+              <button id="submitButton"> <i class="fa fa-send-o"></i></button>
+              <label id="istyping">Partner is typing...</label>
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.5.0/socket.io.js" integrity="sha512-ttqbKrGZiTtSLguBZ2xNvZrhUv02IO/TRq5U6TG5TK90wbaXWup5kIJ1A1tLzjOk5Mea/G4seVNrU+lwTLfAzA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+    <script src="/js/chatrandom.js"></script>    
+  </body>
+</html>

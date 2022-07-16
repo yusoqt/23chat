@@ -1,8 +1,19 @@
 
 
 (function connect() {
-    let socket = io.connect("http://localhost:5000")
-    let normalrooms = io.connect("http://localhost:5000/nmroom")
+    let randomrooms = io.connect("http://localhost:5000/random")
+    var connected = false;
+
+    randomrooms.on('conncet', data => {
+        connected = true;
+    })
+
+    
+    randomrooms.on('chat start', data => {
+        room = data;
+        document.getElementById("wait").innerHTML = ''
+        document.getElementById("roomnum").innerText = room
+    })
 
     let username = document.querySelector('#username');
     let usernameBtn = document.querySelector('#usernameBtn');
@@ -10,7 +21,7 @@
 
     usernameBtn.addEventListener('click', e => {
         console.log(username.value);
-        socket.emit('change_username', { username: username.value })
+        randomrooms.emit('change_username', { username: username.value })
         curUsername.textContent = username.value 
         username.value = ''
     }) 
@@ -21,11 +32,12 @@
 
     messageBtn.addEventListener('click', e => {
         console.log(message.value)
-        socket.emit('new_message', { message: message.value})
+        randomrooms.emit('new_message', { message: message.value})
         message.value = ''
+
     })
 
-    socket.on('receive_message', data => {
+    randomrooms.on('receive_message', data => {
         console.log(data)
         let listItem = document.createElement('li')
         listItem.textContent = data.username + " : " + data.message;
@@ -36,12 +48,12 @@
     let info = document.querySelector('.info');
 
     message.addEventListener('keypress', e => {
-        socket.emit('typing')
+        randomrooms.emit('typing')
     })
 
-    socket.on('typing', data => {
+    randomrooms.on('typing', data => {
         info.textContent = data.username + " กำลังพิมพ์..."
         setTimeout(() => { info.textContent = ''}, 2000)
     })
-    
+
 })();
